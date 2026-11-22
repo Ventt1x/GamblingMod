@@ -8,5 +8,9 @@
   "REPEAT_STRIKE.description": "Deal [blue]{Damage}[/blue] damage. [gold]50%[/gold] chance to repeat.",
   
   "RUSSIAN_ROULETTE.title": "Russian Roulette",
-  "RUSSIAN_ROULETTE.description": "[green]75%[/green] chance to kill the targeted enemy. [red]25%[/red] chance to reduce your HP to [red]1[/red]."
+  "RUSSIAN_ROULETTE.description": "75% chance to kill the targeted enemy. Otherwise, set your HP to 1. Each Luck increases the success chance by {IfUpgraded:show:2|1} percentage point{IfUpgraded:show:s|}.",
+
+  "LUCKY_DAY.title": "Lucky Day",
+  "LUCKY_DAY.description": "Gain {LuckPower} Luck."
+
 }
