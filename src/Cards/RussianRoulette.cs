@@ -49,6 +49,11 @@ class RussianRoulette : ModSmithCardModel
                 Owner.Creature, 1);
         }
     }
+
+    //Bild Path angeben (Chat sagt Bilder sollten 250 × 190 oder 1000 × 760 Pixel groß sein)
+    public override string PortraitPath => "res://GamblingMod/Assets/Cards/russian_roulette.png"; 
+
+
     protected override void OnUpgrade()
     {
     // Kein zusätzlicher Upgrade-Effekt
