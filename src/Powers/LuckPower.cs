@@ -12,4 +12,12 @@ public sealed class LuckPower : ModSmithPowerModel
         PowerStackType.Counter;
 
     public override bool AllowNegative => false;
+
+    // Kleines Symbol über der Lebensanzeige
+    protected override string PackedIconPath =>
+        "res://GamblingMod/Assets/Powers/luck.png";
+
+    // Großes Symbol in der Statusbeschreibung
+    protected override string BigIconPath =>
+        "res://GamblingMod/Assets/Powers/luck.png";
 }
