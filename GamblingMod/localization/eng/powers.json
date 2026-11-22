@@ -1,5 +1,9 @@
 {
   "MADE_OF_GOLD.title": "Made of Gold",
   "MADE_OF_GOLD.description": "Whenever this creature is dealt unblocked attack damage and survives, attacker gains [blue]1[/blue] [gold]Gold[/gold].",
-  "MADE_OF_GOLD.smartDescription": "Whenever [gold]{OwnerName}[/gold] is dealt unblocked attack damage and survives, attacker gains [blue]{Amount}[/blue] [gold]Gold[/gold]."
+  "MADE_OF_GOLD.smartDescription": "Whenever [gold]{OwnerName}[/gold] is dealt unblocked attack damage and survives, attacker gains [blue]{Amount}[/blue] [gold]Gold[/gold].",
+
+  "LUCK_POWER.title": "Luck",
+  "LUCK_POWER.description": "Each stack of [gold]Luck[/gold] increases the chance of winning gambling effects by [blue]1%[/blue].",
+  "LUCK_POWER.smartDescription": "Each stack of [gold]Luck[/gold] increases [gold]{OwnerName}[/gold]'s chance of winning gambling effects by [blue]1%[/blue]. Current bonus: [blue]{Amount}%[/blue]."
 }
