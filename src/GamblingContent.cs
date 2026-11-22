@@ -7,6 +7,6 @@ public static class GamblingContent
 {
   public static void RegisterContent()
   {
-    Registry.RegisterCard<RepeatStrike, ColorlessCardPool>();
+    Registry.RegisterCard<RepeatStrike, IroncladCardPool>();
   }
 }
