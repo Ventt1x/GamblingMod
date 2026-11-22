@@ -5,5 +5,8 @@
   "COIN_FLIP.tailsBanter": "[red]Tails.[/red]",
 
   "REPEAT_STRIKE.title": "Repeat Strike",
-  "REPEAT_STRIKE.description": "Deal [blue]{Damage}[/blue] damage. [gold]50%[/gold] chance to repeat."
+  "REPEAT_STRIKE.description": "Deal [blue]{Damage}[/blue] damage. [gold]50%[/gold] chance to repeat.",
+  
+  "RUSSIAN_ROULETTE.title": "Russian Roulette",
+  "RUSSIAN_ROULETTE.description": "[green]75%[/green] chance to kill the targeted enemy. [red]25%[/red] chance to reduce your HP to [red]1[/red]."
 }
