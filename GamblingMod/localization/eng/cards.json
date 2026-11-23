@@ -14,6 +14,9 @@
   "LUCKY_DAY.description": "Gain {LuckPower} Luck.",
 
   "GAMBLE_TOGETHER.title": "Gamble Together",
-  "GAMBLE_TOGETHER.description": "Each player has a [green]{Chance}%[/green] chance to gain [red]3 Strength[/red]. Otherwise, gain [red]3 Frail[/red]."
+  "GAMBLE_TOGETHER.description": "Each player has a [green]{Chance}%[/green] chance to gain [red]3 Strength[/red]. Otherwise, gain [red]3 Frail[/red].",
   
+  "FORTUNE_SHIELD.title": "Fortune Shield",
+"FORTUNE_SHIELD.description": "Gain [blue]{Min}-{Max}[/blue] [gold]Block[/gold]."
 }
+
