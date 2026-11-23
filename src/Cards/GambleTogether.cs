@@ -92,6 +92,9 @@ class GambleTogether : ModSmithCardModel
         }
     }
 
+    public override string PortraitPath =>
+        "res://GamblingMod/Assets/Cards/gamble_together.png";
+
     protected override void OnUpgrade()
     {
         EnergyCost.UpgradeBy(-1);
