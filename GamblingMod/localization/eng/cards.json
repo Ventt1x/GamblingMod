@@ -11,6 +11,9 @@
   "RUSSIAN_ROULETTE.description": "[green]{HitChance}%[/green] chance to kill the targeted enemy. Otherwise, set your HP to [red]1[/red]. Each [gold]Luck[/gold] increases the success chance by [blue]{IfUpgraded:show:2|1}[/blue] percentage point(s).",
 
   "LUCKY_DAY.title": "Lucky Day",
-  "LUCKY_DAY.description": "Gain {LuckPower} Luck."
+  "LUCKY_DAY.description": "Gain {LuckPower} Luck.",
+
+  "GAMBLE_TOGETHER.title": "Gamble Together",
+  "GAMBLE_TOGETHER.description": "Each player has a [green]{Chance}%[/green] chance to gain [red]3 Strength[/red]. Otherwise, gain [red]3 Frail[/red]."
 
 }
