@@ -59,6 +59,10 @@ class FortuneShield : ModSmithCardModel
         await CreatureCmd.GainBlock(Owner.Creature, block, ValueProp.Move, cardPlay);
     }
 
+    public override string PortraitPath =>
+        "res://GamblingMod/Assets/Cards/fortune_shield.png";
+
+
     protected override void OnUpgrade()
     {
         // The shift is applied in OnPlay and in the description via IsUpgraded
