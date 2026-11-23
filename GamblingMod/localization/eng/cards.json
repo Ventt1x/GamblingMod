@@ -5,7 +5,7 @@
   "COIN_FLIP.tailsBanter": "[red]Tails.[/red]",
 
   "REPEAT_STRIKE.title": "Repeat Strike",
-  "REPEAT_STRIKE.description": "Keep rolling with a [blue]{HitChance}%[/blue] chance to deal [red]{Damage}[/red] damage. Repeat on success. Stop on the first failure. Each [gold]Luck[/gold] increases the chance by [blue]1%[/blue] (max 95%).",
+"REPEAT_STRIKE.description": "Roll [gold]{HitChance}%[/gold], [gold]{StepDrop}%[/gold] less each hit. On success deal [blue]{Damage}[/blue] damage and roll again."
 
   "RUSSIAN_ROULETTE.title": "Russian Roulette",
   "RUSSIAN_ROULETTE.description": "[green]{HitChance}%[/green] chance to kill the targeted enemy. Otherwise, set your HP to [red]1[/red]. Each [gold]Luck[/gold] increases the success chance by [blue]{IfUpgraded:show:2|1}[/blue] percentage point(s).",

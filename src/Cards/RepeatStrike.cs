@@ -1,4 +1,3 @@
-
 using System;
 using System.Collections.Generic;
 using MegaCrit.Sts2.Core.Commands;
@@ -15,6 +14,11 @@ namespace GamblingMod;
 
 class RepeatStrike : ModSmithCardModel
 {
+    private const decimal StartChance = 70m;    // first roll, in percent
+    private const decimal StepDrop = 10m;       // each further roll is this much lower
+    private const decimal PointsPerLuck = 2m;   // percentage points per Luck
+    private const int MaxHits = 20;             // safety limit
+
     public RepeatStrike()
         : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
     {
@@ -25,29 +29,27 @@ class RepeatStrike : ModSmithCardModel
         new DamageVar(5m, ValueProp.Move),
     ];
 
-    // Trefferchance in Prozent berechnen
-    private decimal GetHitChance()
+    private decimal GetLuck()
     {
         if (Owner == null)
-            return 50m;
+            return 0m;
 
-        var luckPower = Owner.Creature.GetPower<LuckPower>();
-        decimal luck = luckPower?.Amount ?? 0m;
-
-        // 50 % Grundchance + 1 Prozentpunkt pro Glück
-        decimal chance = 50m + luck;
-
-        // Maximale Trefferchance: 95 %
-        return Math.Clamp(chance, 0m, 95m);
+        return Owner.Creature.GetPower<LuckPower>()?.Amount ?? 0m;
     }
 
-    // Dynamische Trefferchance in der Kartenbeschreibung
-    protected override void AddExtraArgsToDescription(
-        LocString description)
+    // basePercent may be negative: the chain keeps dropping below 0
+    private static decimal ChanceFor(decimal basePercent, decimal luck)
+        => Math.Clamp(basePercent + PointsPerLuck * luck, 0m, 100m);
+
+    // Chance of the first roll, shown in the card text
+    private decimal GetHitChance() => ChanceFor(StartChance, GetLuck());
+
+    protected override void AddExtraArgsToDescription(LocString description)
     {
         base.AddExtraArgsToDescription(description);
 
         description.Add("HitChance", GetHitChance());
+        description.Add("StepDrop", StepDrop);
     }
 
     protected override async Task OnPlay(
@@ -56,28 +58,27 @@ class RepeatStrike : ModSmithCardModel
     {
         ArgumentNullException.ThrowIfNull(cardPlay.Target);
 
-        // Aktuelle Trefferchance
-        decimal hitChance = GetHitChance() / 100m;
-
-        // Jeder erfolgreiche Wurf erzeugt einen Treffer
+        decimal luck = GetLuck();
         int hits = 0;
 
-        while (hits < 200)
+        while (hits < MaxHits)
         {
+            // base chance: 70, 60, 50 ... 0, -10 ...; Luck lifts every roll equally
+            decimal chance = ChanceFor(StartChance - StepDrop * hits, luck) / 100m;
             float roll = RunState?.Rng.Niche.NextFloat()
                          ?? Rng.Chaotic.NextFloat();
 
-            if (roll >= (float)hitChance)
+            if (roll >= (float)chance)
                 break;
 
             hits++;
         }
 
         GamblingModMain.Logger.Info(
-            $"RepeatStrike: Chance={hitChance:P0}, Hits={hits}"
+            $"RepeatStrike: Luck={luck}, FirstChance={GetHitChance()}%, Hits={hits}"
         );
 
-        // Kein Treffer beim ersten Fehlwurf
+        // Failed the first roll: no damage
         if (hits == 0)
             return;
 
@@ -91,6 +92,6 @@ class RepeatStrike : ModSmithCardModel
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Damage.UpgradeValueBy(3m);
+        DynamicVars.Damage.UpgradeValueBy(2m);
     }
 }
