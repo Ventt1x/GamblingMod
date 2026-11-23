@@ -9,6 +9,7 @@ using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.Random;
 using ModSmith.Models;
 using GamblingMod.Powers;
+using System.Collections.Generic;
 
 namespace GamblingMod;
 
@@ -18,7 +19,13 @@ class GambleTogether : ModSmithCardModel
         : base(1, CardType.Skill,
             CardRarity.Uncommon, TargetType.Self)
     {
+        //AddKeyword(CardKeyword.Exhaust);
     }
+
+    public override IEnumerable<CardKeyword> CanonicalKeywords =>
+    [
+        CardKeyword.Exhaust
+    ];
 
     // Erfolgschance anhand von Luck berechnen
     private static decimal GetChance(
