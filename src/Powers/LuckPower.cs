@@ -11,7 +11,8 @@ public sealed class LuckPower : ModSmithPowerModel
     public override PowerStackType StackType =>
         PowerStackType.Counter;
 
-    public override bool AllowNegative => false;
+    // Auch negatives Glück erlauben
+    public override bool AllowNegative => true;
 
     // Kleines Symbol über der Lebensanzeige
     protected override string PackedIconPath =>

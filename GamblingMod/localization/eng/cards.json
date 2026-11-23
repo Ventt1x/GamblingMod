@@ -1,6 +1,6 @@
 {
-  "COIN_FLIP.title": "Coin Flipi",
-  "COIN_FLIP.description": "Flip a coin and gain [blue]{Gold}[/blue] [gold]gold[/gold] on heads, lose{IfUpgraded:show: half|} as much on tails.",
+  "COIN_FLIP.title": "Coin Flip",
+  "COIN_FLIP.description": "Flip a coin with a [blue]{HeadsChance}%[/blue] chance to gain [blue]{LuckPower}[/blue] [gold]Luck[/gold]. Otherwise, lose{IfUpgraded:show: half|} as much [gold]Luck[/gold].",
   "COIN_FLIP.headsBanter": "[green]Heads![/green]",
   "COIN_FLIP.tailsBanter": "[red]Tails.[/red]",
 
