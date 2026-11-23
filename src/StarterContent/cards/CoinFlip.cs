@@ -12,6 +12,9 @@ using MegaCrit.Sts2.Core.Nodes.Vfx;
 using MegaCrit.Sts2.Core.Random;
 using ModSmith.Models;
 using GamblingMod.Powers;
+using GamblingMod.Utils;
+
+using MegaCrit.Sts2.Core.HoverTips;
 
 namespace GamblingMod;
 
@@ -27,21 +30,32 @@ class CoinFlip : ModSmithCardModel
         new PowerVar<LuckPower>(5m)
     ];
 
+    // Zusätzlicher Hilfstext beim Hovern über die Karte
+    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
+    [
+        new HoverTip(
+            new LocString("cards", $"{Id.Entry}.luckTooltipTitle"),
+            new LocString("cards", $"{Id.Entry}.luckTooltipDescription")
+        )
+    ];
+
     // Wahrscheinlichkeit für Kopf berechnen (in Prozent)
     private decimal GetHeadsChance()
     {
         if (Owner == null)
             return 50m;
 
-        var luckPower = Owner.Creature.GetPower<LuckPower>();
-        decimal luck = luckPower?.Amount ?? 0m;
+        decimal chance = LuckCalculator.Calculate(
+            creature: Owner.Creature,
+            startChance: 50m,
+            minChance: 5m,
+            maxChance: 90m,
+            curveFactor: 1.00d,
+            linearSlopeFactor: 1.00d
+        );
 
-        // 50 % Grundchance + 1 Prozentpunkt pro Glück
-        decimal chance = 50m + luck;
-
-        return Math.Clamp(chance, 0m, 100m);
+        return Math.Round(chance, 1, MidpointRounding.AwayFromZero);
     }
-
     // Aktuelle Kopf-Wahrscheinlichkeit in Kartenbeschreibung
     protected override void AddExtraArgsToDescription(
         LocString description)

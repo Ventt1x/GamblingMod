@@ -3,6 +3,8 @@
   "COIN_FLIP.description": "Flip a coin with a [blue]{HeadsChance}%[/blue] chance to gain [blue]{LuckPower}[/blue] [gold]Luck[/gold]. Otherwise, lose{IfUpgraded:show: half|} as much [gold]Luck[/gold].",
   "COIN_FLIP.headsBanter": "[green]Heads![/green]",
   "COIN_FLIP.tailsBanter": "[red]Tails.[/red]",
+  "COIN_FLIP.luckTooltipTitle": "Luck & Probability",
+  "COIN_FLIP.luckTooltipDescription": "Positive Luck increases your chance of Heads, while negative Luck decreases it. Each additional Luck has a smaller effect.",
 
   "REPEAT_STRIKE.title": "Repeat Strike",
   "REPEAT_STRIKE.description": "Roll [gold]{HitChance}%[/gold], [gold]{StepDrop}%[/gold] less each hit. On success deal [blue]{Damage}[/blue] damage and roll again.", 
@@ -17,6 +19,6 @@
   "GAMBLE_TOGETHER.description": "Each player has a [green]{Chance}%[/green] chance to gain [red]3 Strength[/red]. Otherwise, gain [red]3 Frail[/red].",
   
   "FORTUNE_SHIELD.title": "Fortune Shield",
-"FORTUNE_SHIELD.description": "Gain [blue]{Min}-{Max}[/blue] [gold]Block[/gold]."
+  "FORTUNE_SHIELD.description": "Gain [blue]{Min}-{Max}[/blue] [gold]Block[/gold]."
 }
 
