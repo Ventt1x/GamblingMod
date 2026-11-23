@@ -17,5 +17,6 @@ public static class GamblingContent
         Registry.RegisterCard<RussianRoulette, IroncladCardPool>();
         Registry.RegisterCard<LuckyDay, IroncladCardPool>();
         Registry.RegisterCard<GambleTogether, ColorlessCardPool>();
+        Registry.RegisterCard<FortuneShield, IroncladCardPool>();
     }
 }

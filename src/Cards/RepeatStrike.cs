@@ -17,7 +17,7 @@ class RepeatStrike : ModSmithCardModel
     private const decimal StartChance = 70m;    // first roll, in percent
     private const decimal StepDrop = 10m;       // each further roll is this much lower
     private const decimal PointsPerLuck = 1m;   // was 2m   // percentage points per Luck
-    private const int MaxHits = 20;             // safety limit
+    private const int MaxHits = 400;             // safety limit
 
     public RepeatStrike()
         : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
@@ -26,7 +26,7 @@ class RepeatStrike : ModSmithCardModel
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(5m, ValueProp.Move),
+        new DamageVar(4m, ValueProp.Move),
     ];
 
     private decimal GetLuck()
