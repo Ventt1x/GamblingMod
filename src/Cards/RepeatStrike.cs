@@ -89,6 +89,9 @@ class RepeatStrike : ModSmithCardModel
             .Execute(choiceContext);
     }
 
+    public override string PortraitPath =>
+        "res://GamblingMod/Assets/Cards/repeat_strike.png";
+
     protected override void OnUpgrade()
     {
         DynamicVars.Damage.UpgradeValueBy(3m);

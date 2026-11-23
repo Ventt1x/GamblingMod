@@ -120,6 +120,9 @@ class CoinFlip : ModSmithCardModel
         }
     }
 
+    public override string PortraitPath =>
+        "res://GamblingMod/Assets/Cards/coin_flip.png";
+
     protected override void OnUpgrade()
     {
         // Gewinn von 5 auf 7 erhöhen

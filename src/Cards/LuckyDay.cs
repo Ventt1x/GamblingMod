@@ -47,6 +47,9 @@ public sealed class LuckyDay : ModSmithCardModel
         );
     }
 
+    public override string PortraitPath =>
+        "res://GamblingMod/Assets/Cards/lucky_day.png";
+
     protected override void OnUpgrade()
     {
         DynamicVars["LuckPower"].UpgradeValueBy(1m);
