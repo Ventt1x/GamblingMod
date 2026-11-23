@@ -16,7 +16,7 @@ class RepeatStrike : ModSmithCardModel
 {
     private const decimal StartChance = 70m;    // first roll, in percent
     private const decimal StepDrop = 10m;       // each further roll is this much lower
-    private const decimal PointsPerLuck = 2m;   // percentage points per Luck
+    private const decimal PointsPerLuck = 1m;   // was 2m   // percentage points per Luck
     private const int MaxHits = 20;             // safety limit
 
     public RepeatStrike()
