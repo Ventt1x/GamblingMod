@@ -105,9 +105,15 @@ internal static class GamblerCharacterSelectArt
 
     private static Resource CreateData(Resource original)
     {
-        string directory = Path.Combine(Path.GetDirectoryName(typeof(GamblerCharacterSelectArt).Assembly.Location)!, "RuntimeArt", "character_select");
-        if (!File.Exists(Path.Combine(directory, AtlasName)))
-            directory = Path.Combine(Path.GetDirectoryName(OS.GetExecutablePath())!, "mods", "GamblingMod", "RuntimeArt", "character_select");
+        string directory = Path.Combine(
+    Path.GetDirectoryName(OS.GetExecutablePath())!,
+    "mods",
+    "GamblingMod",
+    "RuntimeArt",
+    "character_select"
+);
+
+GD.Print("TalentedGambler SelectArt: Loading from " + directory);
         string atlasPath = Path.Combine(directory, AtlasName).Replace('\\', '/');
         if (!File.Exists(atlasPath) || !File.Exists(Path.Combine(directory, PageName)))
             throw new FileNotFoundException("Selection atlas or PNG missing: " + directory);
@@ -123,10 +129,52 @@ internal static class GamblerCharacterSelectArt
         var newTextures = atlas.Call("get_textures").AsGodotArray();
         if (oldTextures.Count != 1 || newTextures.Count != 1)
             throw new InvalidOperationException("Selection atlas page count changed.");
-        var before = oldTextures[0].AsGodotObject() as Texture2D;
-        var after = newTextures[0].AsGodotObject() as Texture2D;
-        if (before == null || after == null || before.GetSize() != after.GetSize())
-            throw new InvalidOperationException("Selection texture dimensions differ from original.");
+        var before = oldTextures[0].AsGodotObject();
+        var after = newTextures[0].AsGodotObject();
+
+        if (before != null &&
+            before.HasMethod("get_width") &&
+            before.HasMethod("get_height"))
+        {
+            GD.Print(
+                "TalentedGambler SelectArt: Original runtime size: " +
+                before.Call("get_width").AsInt32() + " x " +
+                before.Call("get_height").AsInt32()
+            );
+        }
+        else
+        {
+            GD.Print("TalentedGambler SelectArt: Original texture size unavailable.");
+        }
+
+        if (after == null ||
+            !after.HasMethod("get_width") ||
+            !after.HasMethod("get_height"))
+        {
+            throw new InvalidOperationException(
+                "Custom texture could not be loaded."
+            );
+        }
+
+        int width = after.Call("get_width").AsInt32();
+        int height = after.Call("get_height").AsInt32();
+
+        GD.Print(
+            "TalentedGambler SelectArt: Custom runtime size: " +
+            width + " x " + height
+        );
+
+        const int expectedWidth = 3716;
+        const int expectedHeight = 2428;
+
+        if (width != expectedWidth || height != expectedHeight)
+        {
+            throw new InvalidOperationException(
+                $"Unexpected custom texture size: {width} x {height}"
+            );
+        }
+
+        GD.Print("TalentedGambler SelectArt: Texture validation passed.");
         var data = ClassDB.Instantiate("SpineSkeletonDataResource").AsGodotObject() as Resource
             ?? throw new InvalidOperationException("Skeleton resource creation failed.");
         data.Call("set_skeleton_file_res", original.Call("get_skeleton_file_res"));
