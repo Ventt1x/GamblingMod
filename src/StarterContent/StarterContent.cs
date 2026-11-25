@@ -8,8 +8,9 @@ public static class StarterContent
 {
   public static void RegisterStarterContent()
   {
+        global::GamblingMod.CharacterRegistrationPatch.Install();
     Registry.RegisterPotion<DropOfGold>();
-    Registry.RegisterCard<CoinFlip, ColorlessCardPool>();
+    Registry.RegisterCard<CoinFlip, global::GamblingMod.TalentedGamblerCardPool>();
     Registry.RegisterRelic<GoldArmor>();
     //Registry.RegisterPotion<GoldPaint>();
     //Registry.RegisterPower<MadeOfGold>();
@@ -17,3 +18,4 @@ public static class StarterContent
     Registry.RegisterAncientEvent<GoldGuy, Hive>();
   }
 }
+
