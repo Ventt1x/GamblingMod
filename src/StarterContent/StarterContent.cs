@@ -11,6 +11,11 @@ public static class StarterContent
         global::GamblingMod.CharacterRegistrationPatch.Install();
     Registry.RegisterPotion<DropOfGold>();
     Registry.RegisterCard<CoinFlip, global::GamblingMod.TalentedGamblerCardPool>();
+    Registry.RegisterCard<FortuneShield, global::GamblingMod.TalentedGamblerCardPool>();
+    Registry.RegisterCard<GambleTogether, global::GamblingMod.TalentedGamblerCardPool>();
+    Registry.RegisterCard<LuckyDay, global::GamblingMod.TalentedGamblerCardPool>();
+    Registry.RegisterCard<RussianRoulette, global::GamblingMod.TalentedGamblerCardPool>();
+    Registry.RegisterCard<RepeatStrike, global::GamblingMod.TalentedGamblerCardPool>();
     Registry.RegisterRelic<GoldArmor>();
     //Registry.RegisterPotion<GoldPaint>();
     //Registry.RegisterPower<MadeOfGold>();
