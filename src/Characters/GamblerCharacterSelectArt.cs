@@ -177,7 +177,44 @@ GD.Print("TalentedGambler SelectArt: Loading from " + directory);
         GD.Print("TalentedGambler SelectArt: Texture validation passed.");
         var data = ClassDB.Instantiate("SpineSkeletonDataResource").AsGodotObject() as Resource
             ?? throw new InvalidOperationException("Skeleton resource creation failed.");
-        data.Call("set_skeleton_file_res", original.Call("get_skeleton_file_res"));
+        string skeletonPath = Path.Combine(
+    directory,
+    "characterselect_ironclad.skel"
+).Replace('\\', '/');
+
+if (!File.Exists(skeletonPath))
+    throw new FileNotFoundException(
+        "Custom selection skeleton missing.",
+        skeletonPath
+    );
+
+var skeleton = ClassDB.Instantiate(
+    "SpineSkeletonFileResource"
+).AsGodotObject() as Resource
+    ?? throw new InvalidOperationException(
+        "Skeleton resource creation failed."
+    );
+
+if (!skeleton.HasMethod("load_from_file"))
+    throw new InvalidOperationException(
+        "Spine skeleton loader unavailable."
+    );
+
+int skeletonError = skeleton.Call(
+    "load_from_file",
+    skeletonPath
+).AsInt32();
+
+if (skeletonError != 0)
+    throw new InvalidOperationException(
+        "Skeleton load error: " + skeletonError
+    );
+
+data.Call("set_skeleton_file_res", skeleton);
+
+GD.Print(
+    "TalentedGambler SelectArt: Custom skeleton loaded."
+);
         data.Call("set_atlas_res", atlas);
         data.Call("set_default_mix", original.Call("get_default_mix"));
         data.Call("set_animation_mixes", original.Call("get_animation_mixes"));
